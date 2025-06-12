@@ -13,7 +13,7 @@ import lombok.*;
 @Setter
 public class CreateUserRequest {
     @NotBlank(message = "Name cannot be null")
-    @Size(min = 5, max = 100, message = "Name must have betwwen 5 and 100 chars")
+    @Size(min = 5, max = 100, message = "Name must have between 5 and 100 chars")
     private String name;
     @Email(message = "Email must be valid")
     @Size(max = 255, message = "Email cannot have more than 255 chars")

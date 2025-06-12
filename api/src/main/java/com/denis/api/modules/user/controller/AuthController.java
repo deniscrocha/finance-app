@@ -8,10 +8,11 @@ import com.denis.api.modules.user.service.CreateUserService;
 import com.denis.api.modules.user.service.LoginUserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import static org.springframework.http.HttpStatus.ACCEPTED;
+import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
 @RequestMapping("/auth")
@@ -27,7 +28,13 @@ public class AuthController {
     }
 
     @PostMapping("/register")
+    @ResponseStatus(CREATED)
     public CreateUserResponse createUser(@Valid @RequestBody CreateUserRequest createUserRequest){
         return createUserService.createUser(createUserRequest);
+    }
+
+    @GetMapping("/validate")
+    @ResponseStatus(ACCEPTED)
+    public void validateToken(){
     }
 }
